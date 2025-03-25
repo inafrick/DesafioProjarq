@@ -1,17 +1,22 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-        Codificador cod = new Codificador();
-
+    public static void main(String[] args) {
+        Codificador codificador = new Codificador();
         String aux = "Desafio Padrões de Projeto";
 
         System.out.println(aux);
-        aux = cod.codifica(Codificador.Tipo.SIMPLES, aux);
+        
+        // cod simpl
+        codificador.setStrategy(new CodificacaoSimples());
+        aux = codificador.codifica(aux);
         System.out.println(aux);
-        aux = cod.deCodifica(Codificador.Tipo.SIMPLES, aux);
+        aux = codificador.decodifica(aux);
         System.out.println(aux);
-        aux = cod.codifica(Codificador.Tipo.DESLOCA, aux);
+
+        // cod desloc
+        codificador.setStrategy(new CodificacaoDesloca());
+        aux = codificador.codifica(aux);
         System.out.println(aux);
-        aux = cod.deCodifica(Codificador.Tipo.DESLOCA, aux);
+        aux = codificador.decodifica(aux);
         System.out.println(aux);
     }
 }
