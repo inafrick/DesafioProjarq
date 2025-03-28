@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class VisualizadorDeMedia {
+public class VisualizadorDeMedia implements Observador{
     private List<Integer> valores;
 
     public VisualizadorDeMedia(List<Integer> valores){
@@ -13,6 +13,11 @@ public class VisualizadorDeMedia {
 
     public void acrescentaValor(Integer valor){
         this.valores.add(valor);
+    }
+
+    public void notifica(List<Integer> lst) {
+        this.valores = lst;
+        this.exibeMedia();
     }
 
     public void exibeMedia(){

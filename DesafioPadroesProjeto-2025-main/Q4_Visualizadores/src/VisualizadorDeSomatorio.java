@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class VisualizadorDeSomatorio {
+public class VisualizadorDeSomatorio implements Observador{
     private List<Integer> valores;
 
     public VisualizadorDeSomatorio(List<Integer> valores){
@@ -13,6 +13,11 @@ public class VisualizadorDeSomatorio {
 
     public void acrescentaValor(Integer valor){
         this.valores.add(valor);
+    }
+
+    public void notifica(List<Integer> lst) {
+        this.valores = lst;
+        this.exibeSomatorio();
     }
 
     public void exibeSomatorio(){
