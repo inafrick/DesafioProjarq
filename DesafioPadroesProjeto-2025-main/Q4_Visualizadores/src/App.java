@@ -8,17 +8,26 @@ public class App {
 
         Scanner s = new Scanner(System.in);
         int valor = 0;
+        boolean media = false, soma = false;
         while(true){
-            System.out.println("\nEntre um valor positivo maior que zero (0=fim):");
+            System.out.println("\nEntre um valor positivo maior que zero (-1 = ativar somatório, -2 = ativar média, 0 = fim):");
             valor = Integer.parseInt(s.nextLine());
-            if (valor == 0){
-                break;
+
+            if (valor == 0) break;
+            else if (valor == -1) {
+                dados.registraObservador(cs);
+                System.out.println("Visualizador de somatório ativado.");
+                soma = true;
+            } else if (valor == -2) {
+                dados.registraObservador(cm);
+                System.out.println("Visualizador de média ativado.");
+                media = true;
+            } else {
+                dados.insereValor(valor);
             }
-            dados.add(valor);
-            cs.acrescentaValor(valor);
-            cm.acrescentaValor(valor);
-            cs.exibeSomatorio();
-            cm.exibeMedia();
+
+            if(soma) cs.exibeSomatorio();
+            if(media) cm.exibeMedia();
         }
         System.out.println("Fim");
     }
