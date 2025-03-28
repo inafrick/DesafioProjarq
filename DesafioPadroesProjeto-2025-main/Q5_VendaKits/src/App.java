@@ -1,12 +1,18 @@
-import java.util.List;
-
 public class App {
-    public static void main(String[] args){
-        VendasFachada proc = new VendasEmMemoria();
-        List<Produto> produtos = proc.buscarProdutos();
-        Venda venda = proc.iniciarVenda();
-        proc.registrarVenda(venda, produtos.get(0).getId(), 1);
-        proc.registrarVenda(venda, produtos.get(1).getId(), 2);
-        System.out.println(proc.emitirComprovante(venda));
+    public static void main(String[] args) {
+        Produto caneta = new Produto(1, "Caneta", 1.55);
+        Produto borracha = new Produto(2, "Borracha", 1.15);
+        Produto caderno = new Produto(3, "Caderno", 32.99);
+        
+        Kit kitEscola = new Kit(4, "Kit Escolar");
+        kitEscola.adicionarItem(caneta);
+        kitEscola.adicionarItem(borracha);
+        kitEscola.adicionarItem(caderno);
+        
+        Venda venda = new Venda();
+        venda.registrarVenda(caneta, 2);
+        venda.registrarVenda(kitEscola, 1);
+        
+        System.out.println(venda.emitirComprovante());
     }
 }
